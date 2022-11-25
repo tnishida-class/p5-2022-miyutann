@@ -15,8 +15,12 @@ function draw(){
     let b = balls[i];
     ellipse(b.x, b.y, b.size);
     b.x += b.vx;
+    b.vx = random(-0.5, 0.5);
     b.y += b.vy;
+    if(b.y > height){balls.shift(b)};
   }
+  const b = { x: random(width), y: 0, size: random(5, 13), vx: 0, vy: 2 };
+  balls.push(b);
 }
 
 function mouseDragged(){
