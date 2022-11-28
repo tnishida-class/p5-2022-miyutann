@@ -15,15 +15,19 @@ function draw(){
     let b = balls[i];
     ellipse(b.x, b.y, b.size);
     b.x += b.vx;
+    b.vx = random(-0.5, 0.5);
     b.y += b.vy;
+    if(b.y > height){balls.shift(b)};
   }
+  const b = { x: random(width), y: 0, size: random(5, 13), vx: 0, vy: 2 };
+  balls.push(b);
 }
 
 function mouseDragged(){
   const dx = mouseX - pmouseX;
   const dy = mouseY - pmouseY;
   if(mag(dx, dy) > 5){
-    const b = { x: mouseX, y: mouseY, size: 20, vx: dx, vy: dy };
+    const b = { x: mouseX, y: mouseY, size: random(20, 100), vx: dx, vy: dy };
     balls.push(b);
   }
 }
