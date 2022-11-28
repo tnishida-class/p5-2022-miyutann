@@ -24,7 +24,7 @@ function draw(){
     ellipse(s.x, s.y, s.size);
     s.x += s.vx;
     s.y += s.vy;
-    if(s.y > height){snows.shift(s)};
+    if(s.y > height - ground){snows.shift(s)};
   }
   const s = { x: random(width), y: 0, size: random(4, 10), vx: random(-0.3,0.3), vy: 1.5 };
   snows.push(s);
@@ -36,7 +36,7 @@ function draw(){
 
   y -= vy;
 
-  if(y < height - ground - size / 2){ // in the air
+  if(y < height - ground - size / 2){
     vy -= g;
   }
   else{
@@ -49,7 +49,7 @@ function draw(){
   if(keyIsDown("C".charCodeAt(0))){size=50}
 
   ellipse(1200, height - ground - 73, 150)
-  if(y< height - ground - 200 && x < 1230 && x> 1170){
+  if(y< height - ground - 190 && x < 1240 && x > 1180){
     vy = 0;
     y = height - ground - size/2 - 140;
     fill(91, 71, 34);
@@ -59,7 +59,7 @@ function draw(){
     triangle(x, y-size/10, x - size/10, y + size/23, x + size/6, y + size/10);
   }
 
-  instruction("スペースキーでジャンプ、矢印で左右移動、Cでリセット",50 ,50, 0, 255);
+  instruction("スペースキーでジャンプ、矢印で左右移動、Cでリセット", 15, 60 ,60, 0, 255);
 
 }
 
@@ -67,7 +67,7 @@ function keyPressed(){
   if(key == " "){vy = 30}
 }
 
-function instruction(t, x, y, c, bc){
+function instruction(t, ts, x, y, c, bc){
   let w = textWidth(t);
   let h = textAscent()
   let p = 15;
@@ -78,6 +78,7 @@ function instruction(t, x, y, c, bc){
   fill(c);
   rect(x, y, w + p * 2, h + p * 2);
   fill(255);
+  textSize(ts);
   text(t, x + p, y+ h + p);
 }
 
